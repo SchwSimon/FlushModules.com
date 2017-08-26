@@ -11,9 +11,9 @@ How to build a module
 ```js
 (function( $, module ) {
 	
-	"use strict";
+  "use strict";
 
-	$.mod.register( "myModule", module );
+  $.mod.register( "myModule", module );
 	
 })( $, {
   
@@ -45,7 +45,7 @@ How to build a module
     
     main.innerHTML =  '<div id="myModule">' +
                         '<div id="myModule-something">Something in here</div>' +
-           (( isMe ) ?  '<div id="myModule-somethingPrivate">This will only see the logged in client</div>' : '' ) +
+           (( isMe ) ?  '<div id="myModule-somethingPrivate">This will only see the logged in client on his own module page</div>' : '' ) +
                       '</div>';
 
     this.node_myModule = $.doc.getElementById( "myModule" );
