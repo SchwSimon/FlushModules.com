@@ -1,5 +1,71 @@
 # FlushModules.com
 
+Community driven open source social network platform
+
+**_https://FlushModules.com_**
+
+# Module structure
+
+How to build a module
+
+```js
+(function( $, module ) {
+	
+	"use strict";
+
+	$.mod.register( "myModule", module );
+	
+})( $, {
+  
+  onEnd: function() { // gets triggered when the module stops (on module change)
+    this.node_myModule.removeEventListener( "click", this.listen, false );
+  },
+  
+  listen: function( event ) {},
+  
+  init: function( $, main, isMe, request ) {  // gets triggered when the module starts
+    // $ -> reference to the global SewerFlush object
+    // main -> the document node where to put your module's HTML in
+    // isMe -> result of the $.isMe() function, see SewerFlush documentation below for info
+    // request -> when opening flushmodules.com with the parameter "main" request will be its value
+    
+    
+    // if this module is a user only module (means that client has to be on a users profile),
+    // you can use this function to deny access to the module and print out an error message
+    // - No user selected
+    // - This user is not your friend
+    if ( !$.mod.checkAccess( isMe ) ) { // module will only start when the client is logged in
+      return;                           // the client is on his own module page
+    }                                   // the client is on a friends module page
+    // OR
+    // if its a user only module but the client dont need to be friends or even logged in
+    if ( !$.mod.checkAccess( isMe, false ) ) {  // just pass false as second argument
+      return;
+    }
+    
+    main.innerHTML =  '<div id="myModule">' +
+                        '<div id="myModule-something">Something in here</div>' +
+           (( isMe ) ?  '<div id="myModule-somethingPrivate">This will only see the logged in client</div>' : '' ) +
+                      '</div>';
+
+    this.node_myModule = $.doc.getElementById( "myModule" );
+    if ( isMe ) {
+      this.node_somethingPrivate = $.doc.getElementById( "myModule-somethingPrivate" );
+    }
+    
+    this.node_myModule.addEventListener( "click", this.listen, false );
+  }
+  
+});
+```
+
+# App structure
+## Without zLayer
+
+## With zLayer
+
+## zLayer
+
 
 # SewerFlush Documentation
 
@@ -144,6 +210,16 @@ time.time // "22:45"
 time.past // "xx minutes/hours/days/weeks/months"
 ```
 
+**_$.info()_**  (function)
+> Creates an info popup dialog
+```js
+$.info( "Info title", "Info body content" );  // can be closed by clicking anywhere (has only an "Ok" button)
+$.info( "Info title", "Info body content", function() { // when passing a function as third argument 
+  console.log( "Confirmed" );                           // the dialog becomes a "Cancel" and "Confirm" button
+});                                                     // now the dialog can only be close by cliing one of these
+                                                        // will trigger the function on confirm
+```
+
 **_$.docScroll_**  (object)
 > Set or get the document scroll position
 ```js
@@ -159,7 +235,31 @@ $.volume.set( 0.5 ); // set the global sound volume to 0.5
 ```
 
 **_$.connector_**  (object)
-> Register a connector 
+> Register, use or remove a connector
+> Connectors are used for app to app or module to app communication
 ```js
-
+$.connector.register( "connector_key", function( data ) {
+  console.log( data );
+});
+$.connector.is( "connector_key" );  // returns true
+$.connector.use( "connector_key", "Hello data!" ); // will console.log -> "Hello data!"
+$.connector.remove( "connector_key" );  // removes the connector
 ```
+
+**_$.listen_**  (object)
+> Register or remove global listening events
+> !NOTE: "resize" and "scroll" events are getting throttled by 180ms so no need to take care of
+> !!NOTE: Do not use a variable called 'e'
+> !!!NOTE: There is only one global listener per event, one lister contains all registered functions for the given event
+> !!!!IMPORTANT: Only register functions as string like in the example below
+> Because otherwise the scripts may break when getting minified...
+```js
+$.listen.register( "resize", "listen_key", "function( e ) {" + // the function gets passed here as concated string
+  "console.log('hello');" +                                    // for better readability
+"}", true );                                                   // dont forget to pass true as last argument
+$.listen.remove( "listen_key" );  // removes all listeners with the given key
+$.listen.remove( "listen_key", "resize" ); // only removes the resize listener with that key
+```
+
+
+
