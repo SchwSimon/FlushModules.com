@@ -1,0 +1,55 @@
+# A list of global css classes
+
+icons: https://flushmodules.com/css/visuals/fm-icons.png
+
+- ic-menu
+- ic-flushmodules-a
+- ic-flushmodules-b
+- ic-notify
+- ic-arrowdown
+- ic-arrowup
+- ic-arrowleft
+- ic-arrowright
+- ic-touch
+- ic-mouse
+- ic-search
+- ic-pen
+- ic-folder
+- ic-gear-a
+- ic-gear-b
+- ic-chat
+- ic-paint
+- ic-photo
+- ic-video
+- ic-attachment
+- ic-file-s
+- ic-file
+
+patterns: (repeated background)
+
+- pt-trans (https://flushmodules.com/css/visuals/pattern-trans.gif)
+
+overlays:
+
+- ov-trigger (makes the element absoulte, transparent and fully covering the parent(needs position:relative;))
+- ov-submit (submit button style)
+- ov-button (button style)
+- ov-arrow-up (arrow style)
+- ov-arrow-down (..)
+- ov-arrow-left (..)
+- ov-arrow-right (..)
+- ov-input (default style for input elements(data-valid="true/false" style for correct/false input))
+- ov-fileinput (hides the default file input and makes it absolute and fully covering the parent(needs position:relative;))
+- ov-pre (similar to html <pre> element style)
+- ov-loading-s1 (default loading icon as background with min height/width)
+- ov-loading-s2 (..)
+- ov-ellipsis (nowrap, text ellipsis, no overflow)
+- ov-centerer (used for centering inline-block elements vertically)
+- ov-clear (clear float)
+- ov-link (default link style)
+- ov-playvideo (used for video play buttons on video preview images)
+
+other:
+
+- hide (hide element)
+- hr (hr style)
