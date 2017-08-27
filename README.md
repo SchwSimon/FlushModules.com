@@ -222,6 +222,12 @@ How to build an app
 **_$.isMe()_**  (function)
 > returns true if the client is logged in AND the requested user is the client himself respectively there is no user requested
 
+**_$.key()_** (function)
+> converts a keyboard event object, return a string as KeyboardEvent.key would give
+> KeyboardEvent.key is used directly when possible (Chrome >= 51.0, IE >= 9)
+> Following keys are converted so far KeyboardEvent.key is undefined
+> "Backspace", "Enter", "Shift", "Control", "Alt", "Escape", " ", "ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"
+
 **_$.userFriends.get()_** (function)
 > Get the client's friends (only if logged in)
 ```js
@@ -338,6 +344,30 @@ $.info( "Info title", "Info body content", function() { // when passing a functi
                                                         // will trigger the function on confirm
 ```
 
+**_$.ajax()_**  (function)
+> Ajax function similar to jQuery
+```js
+$.ajax({
+  url: "",  // uses the default flushmodules backend call url
+  data: {}, // data to send
+  isFile: fase, // set to true if sending files via ajax using FormData
+  method: "POST",
+  trigger: node_trigger,  // you can pass a node which style will change to look like a pressed button
+  triggerTxt: "Loading..",// the content will change to "Loading..." so far *triggerTxt* is not given
+  triggerNoStyle: false,  // and a loading gif will be added
+                          // if you do not want the style change (pressed button look) set triggerNoStyle to true
+                          // when the ajax call is completed the node will get back into its default state
+                          // Note: This will automatically prevent multiple ajax calls triggered
+                          // from clicks on that trigger node
+  noError: false, // set to true if you want to ignore response errors
+  getRaw: false, // set to true when you want the success/error data to be the raw callback string
+  process: function( ProgressEvent ) {},
+  success: function( data, $ ) {},
+  error: function( data, $ ) {},
+  complete: function( $ ) {}
+});
+```
+
 **_$.docScroll_**  (object)
 > Set or get the document scroll position
 ```js
@@ -378,6 +408,4 @@ $.listen.register( "resize", "listen_key", "function( e ) {" + // the function g
 $.listen.remove( "listen_key" );  // removes all listeners with the given key
 $.listen.remove( "listen_key", "resize" ); // only removes the resize listener with that key
 ```
-
-
 
