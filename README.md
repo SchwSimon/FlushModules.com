@@ -8,7 +8,7 @@ Community driven open source social network platform
 
 How to build a module
 
-> Following app keys are reserved, do not use them!
+> Following module keys are reserved, do not use them!
 > - name
 > - end
 
@@ -112,7 +112,7 @@ How to build an app
   
   // gets triggered on app start
   init: function( $, startArg ) {
-		// $ -> reference to the global SewerFlush object
+    // $ -> reference to the global SewerFlush object
     // startArg -> an optional argument which can be given at app start
   }
 	
@@ -153,7 +153,7 @@ How to build an app
   
   // gets triggerd on app start OR on opening(when was minified)
   init: function( $, startArg ) {
-		// $ -> reference to the global SewerFlush object
+    // $ -> reference to the global SewerFlush object
     // startArg -> an optional argument which can be given at app start
    
     // creates a new zLayer object OR trys to open if this reference exists and is minified
