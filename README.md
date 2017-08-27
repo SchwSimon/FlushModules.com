@@ -111,9 +111,9 @@ How to build an app
   onClose: function() {},
   
   // gets triggered on app start
-  init: function( $, startArg ) {
+  init: function( $, initArg ) {
     // $ -> reference to the global SewerFlush object
-    // startArg -> an optional argument which can be given at app start
+    // initArg -> an optional argument which can be given at app start
   }
 	
 });
@@ -152,9 +152,9 @@ How to build an app
   },
   
   // gets triggerd on app start OR on opening(when was minified)
-  init: function( $, startArg ) {
+  init: function( $, initArg ) {
     // $ -> reference to the global SewerFlush object
-    // startArg -> an optional argument which can be given at app start
+    // initArg -> an optional argument which can be given at app start
    
     // creates a new zLayer object OR trys to open if this reference exists and is minified
     if ( $.zLayer.create( this ) ) {
