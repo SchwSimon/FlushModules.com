@@ -8,6 +8,10 @@ Community driven open source social network platform
 
 How to build a module
 
+> Following app keys are reserved, do not use them!
+> - name
+> - end
+
 ```js
 (function( $, module ) {
 	
@@ -17,13 +21,15 @@ How to build a module
 	
 })( $, {
   
-  onEnd: function() { // gets triggered when the module stops (on module change)
+  // gets triggered when the module stops (on module change)
+  onEnd: function() {
     this.node_myModule.removeEventListener( "click", this.listen, false );
   },
   
   listen: function( event ) {},
   
-  init: function( $, main, isMe, request ) {  // gets triggered when the module starts
+  // gets triggered when the module starts
+  init: function( $, main, isMe, request ) {
     // $ -> reference to the global SewerFlush object
     // main -> the document node where to put your module's HTML in
     // isMe -> result of the $.isMe() function, see SewerFlush documentation below for info
@@ -60,12 +66,124 @@ How to build a module
 ```
 
 # App structure
+
+How apps are started
+
+Via HTML, by clicking one of these html elements
+```html
+<div data-app="myApp"></div>  <!-- Start "myApp" without a starter reference and optional argument -->
+<div data-app="myApp:optArg"></div> <!-- Start "myApp" with an optional argument: "optArg" -->
+<div data-app="myApp::starterName"></div> <!-- Start "myApp" with the starter name "starterName" -->
+<div data-app="myApp:optArg:starterName"></div> <!-- Start "myApp" with an optiona argument and starter name -->
+```
+Via Javascript, by passing a string as it would be provided in an html element attribute like above
+```js
+$.app.start( "myApp" ); // Start "myApp" without a starter reference and optional argument
+$.app.start( "myApp:optArg" );  // Start "myApp" with an optional argument: "optArg"
+$.app.start( "myApp::starterName" );  // Start "myApp" with the starter name "starterName"
+$.app.start( "myApp:optArg:starterName" );  // Start "myApp" with an optiona argument and starter name
+```
+
+How to build an app
+
+> Following app keys are reserved, do not use them!
+> - name
+> - close (use "this.close();" when you want to programmatically close the app by itself)
+> - pid
+> - starter
+> - kill
+> - cKey (when using $.connector)
+> - zLayer (when using zLayer)
+> - zClick (when using zLayer)
+> - zMin (when using zLayer)
+
 ## Without zLayer
+```js
+(function( $, app ) {
+	
+  "use strict";
 
+  $.app.register( app, "myApp" );
+	
+})( $, {
+  
+  // gets triggered when the app gets closed
+  onClose: function() {},
+  
+  // gets triggered on app start
+  init: function( $, startArg ) {
+		// $ -> reference to the global SewerFlush object
+    // startArg -> an optional argument which can be given at app start
+  }
+	
+});
+```
 ## With zLayer
+```js
+(function( $, app ) {
+	
+  "use strict";
 
-## zLayer
-
+  $.app.register( app, "myApp" );
+	
+})( $, {
+  
+  // The html content for your zLayer
+  // DO NOT use id's when the app is intended for running multiple times
+  zHtml:  '<div class="app-myApp">' +
+           '<div class="app-myApp-title">This is myApp</div>' +
+          '</div>',
+  
+  // The click event which gets automatically binded to your zLayer
+  zClick: function( event ) {},
+  
+  // Gets triggered when the zLayer gets minified
+  zMin: function() {},
+  
+  // gets triggered when the app gets closed
+  onClose: function() {},
+  
+  // some submit function for showcase only
+  submit: function( data ) {
+    if ( this.cKey ) {
+      $.connector.use( this.cKey, data );
+      this.close(); // close the app by itself
+    }
+  },
+  
+  // gets triggerd on app start OR on opening(when was minified)
+  init: function( $, startArg ) {
+		// $ -> reference to the global SewerFlush object
+    // startArg -> an optional argument which can be given at app start
+   
+    // creates a new zLayer object OR trys to open if this reference exists and is minified
+    if ( $.zLayer.create( this ) ) {
+      // new zLayer created
+      
+      this.node_myApp = this.zLayer.zBody.getElementsByClassName( "app-myApp" )[0];
+      this.node_title = this.zLayer.zBody.getElementsByClassName( "app-myApp-title" )[0];
+    } else {
+      // reference exists already
+      
+      this.node_title.textContent = "something";
+    }
+    
+    // ---------------
+    // assuming the app is intended to get an connector key as optional argument
+    // the connector has to be registered before starting the app
+    // A registered connector will get automatically removed on app close, as long as you 
+    // define the cKey object variable like below.
+    if ( startArg ) {
+      this.cKey = startArg; // use "cKey" to store the connector key name
+      $.connector.use( this.cKey, {
+        somevar: "Hello callback!",
+        app: this // like this you can pass the current app reference trough the connector
+      });
+    }
+  }
+	
+});
+```
 
 # SewerFlush Documentation
 
