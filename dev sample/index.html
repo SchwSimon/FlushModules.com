@@ -26,21 +26,21 @@
 		
 		<script type="text/javascript" src="SewerFlush.js"></script>
 		<script>
-		  document.addEventListener( "click", function(e) {
-		    if ( e.target.hasAttribute( "data-mod" ) ) $.mod.start( e.target.getAttribute( "data-mod" ) );
-		  }, false );
-		  $.rsc.fmRessources = {
-		    module: {	module_a:	{ css: null,
-		                          js: "module_a.js" },
-		              module_b:	{ css: null,
-		                          js: "module_b.js" },
-		    },
-		    app: {	app_a:	{ css: null,
-                          js: "app_a.js" },
-                app_b:	{	css: null,
-                          js: "app_b.js" },
-		    }
-		  };
+			document.addEventListener( "click", function(e) {
+				if ( e.target.hasAttribute( "data-mod" ) ) $.mod.start( e.target.getAttribute( "data-mod" ) );
+			}, false );
+			$.rsc.fmRessources = {
+				module: {	module_a:	{	css: null,
+													js: "module_a.js"	},
+								module_b:	{	css: null,
+													js: "module_b.js"	},
+				},
+				app: {	app_a:	{	css: null,
+											js: "app_a.js"	},
+							app_b:	{	css: null,
+											js: "app_b.js"	},
+				}
+			};
 		</script>
-  </body>
+	</body>
 </html>
