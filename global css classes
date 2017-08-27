@@ -2,8 +2,7 @@
 
 icons: https://flushmodules.com/css/visuals/fm-icons.png
 
-```css
-.ic-menu
+- ic-menu
 - ic-flushmodules-a
 - ic-flushmodules-b
 - ic-notify
@@ -25,7 +24,6 @@ icons: https://flushmodules.com/css/visuals/fm-icons.png
 - ic-attachment
 - ic-file-s
 - ic-file
-```
 
 patterns: (repeated background)
 
