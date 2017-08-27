@@ -1,1 +1,46 @@
-a
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>FlushModules Dev Sample</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="global.css">
+	</head>
+	<body>
+		
+		<div style="text-align:center;margin:10px 0">
+			<div class="ov-button" style="display:inline-block;vertical-align:middle;width:125px" data-mod="module_a">Module A</div>
+			<div class="ov-button" style="display:inline-block;vertical-align:middle;width:125px" data-mod="module_b">Module B</div>
+			<br>
+			<div class="ov-button" style="display:inline-block;vertical-align:middle;width:125px" data-app="app_a">App A</div>
+			<div class="ov-button" style="display:inline-block;vertical-align:middle;width:125px" data-app="app_a:hello argument">App A with init argument</div>
+			<div class="ov-button" style="display:inline-block;vertical-align:middle;width:125px" data-app="app_a::abc">App A with starter name</div>
+			<div class="ov-button" style="display:inline-block;vertical-align:middle;width:125px" data-app="app_a::def">App A with another starter name</div>
+			<br>
+			<div class="ov-button" style="display:inline-block;vertical-align:middle;width:125px" data-app="app_b">App B</div>
+			<div class="ov-button" style="display:inline-block;vertical-align:middle;width:125px" data-app="app_b::abc">App B with starter name</div>
+		</div>
+		
+		<!-- the url main parameter will add the attribute data-main  -->
+		<div id="main"></div>
+		
+		<script type="text/javascript" src="SewerFlush.js"></script>
+		<script>
+			document.addEventListener( "click", function(e) {
+				if ( e.target.hasAttribute( "data-mod" ) ) $.mod.start( e.target.getAttribute( "data-mod" ) );
+			}, false );
+			$.rsc.fmRessources = {
+				module: {	module_a:	{	css: null,
+													js: "module_a.js"	},
+								module_b:	{	css: null,
+													js: "module_b.js"	},
+				},
+				app: {	app_a:	{	css: null,
+											js: "app_a.js"	},
+							app_b:	{	css: null,
+											js: "app_b.js"	},
+				}
+			};
+		</script>
+	</body>
+</html>
