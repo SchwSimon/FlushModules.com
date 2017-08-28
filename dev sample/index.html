@@ -26,9 +26,21 @@
 		
 		<script type="text/javascript" src="SewerFlush.js"></script>
 		<script>
+			/*
+			 *	The default client state is: Logged in
+			 *	If you want the logged out state, just uncomment the following line
+			 */
+			//$.user = null;
+			
+			/*
+			 * Uncomment the following line to imitate being on another user's profile
+			 */
+			//$.userMain = { id:999, name:"another user", avatar:"avatar.jpg", isFriend:false };
+			
 			document.addEventListener( "click", function(e) {
 				if ( e.target.hasAttribute( "data-mod" ) ) $.mod.start( e.target.getAttribute( "data-mod" ) );
 			}, false );
+			
 			$.rsc.fmRessources = {
 				module: {	module_a:	{	css: null,
 													js: "module_a.js"	},
