@@ -1,6 +1,6 @@
 # FlushModules.com
 
-Community driven open source social network platform
+Community driven open source social media platform
 
 **_https://FlushModules.com_**
 
