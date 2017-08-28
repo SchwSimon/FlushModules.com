@@ -408,3 +408,42 @@ $.listen.remove( "listen_key" );  // removes all listeners with the given key
 $.listen.remove( "listen_key", "resize" ); // only removes the resize listener with that key
 ```
 
+# Backend (PHP 7)
+
+To build backend scripts use following as config.
+```php
+define( "DIR_BACKEND", "D:/your/absolute/backend/path/" );
+define( "DIR_FRONTEND", "D:/your/absolute/frontend/path/" );
+define( "DIR_DATA", "D:/your/absolute/client/files/path/" );
+define( "DIR_USERS", DIR_DATA . "users/" );
+define( "DOMAIN", "http://127.0.0.1/" );									// local: 
+define( "LOGIN", true ); // whether or not the user is logged in
+
+//when using SerwerFlush's ajax function
+if ( isset( $_POST["fm"] ) ) {
+  $_POST = json_decode( $_POST["fm"], true );
+} elseif ( isset( $_GET["fm"] ) ) {
+  $_GET = json_decode( $_GET["fm"], true );
+}
+
+// global database connect function
+function db_connect( $database = "database-name" ) {
+  $mysqli = new mysqli( "localhost", "username", "password", $database );
+  $mysqli->set_charset( "utf8" );
+  return $mysqli;
+}
+
+// only use this function to send data back to client
+// even when there is no data to sent just use: callback();
+// $type: "success" will trigger SewerFlush's ajax->success function
+// $type: "error" ajax->error (Note: error is intended to catch non critical errors such as
+// invalid user input.
+// For example callback( "invalid date, please provide a date in the future", "error" );
+// Clientside ajax error function: function( data, $ ) { $.info( "Date submit error", data ); }
+function callback( $data = "", $type = "success" ) {
+  exit( json_encode( array( "data" => $data,
+                            "type" => $type ) ) );
+}
+```
+
+
