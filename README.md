@@ -187,37 +187,36 @@ How to build an app
 
 # SewerFlush Documentation
 
-**$**
+**_$_**
 > The global SewerFlush variable
 
-**$.global**
+**_$.global_**
 > A reference to the global *window* object
 
-**$.doc**
+**_$.doc_**
 > A reference to the *window.document* object
 
-**_$.url_** (var)
+**_$.url_**
 > Object containing complete urls *(directoy urls ending with a leading slash '/')*
 > $.url.host  -> Domain url including the protocol
 > $.url.data  -> Data path url
 > $.url.ajax  -> Url for ajax requests
 > $.url.users -> Users data url
 
-**_$.user_**  (var)
+**_$.user_**
 > Contains the client user data *(if logged in)*
 > $.user.id     -> User id
 > $.user.name   -> Username
 > $.user.avatar -> Avatar.jpg
 > $.user.path   -> The users data path
 
-**_$.userMain_**  (var)
+**_$.userMain_**
 > Contains the user data from the requested user
 > Same as **$.user** except for one additional parameter
 > $.userMain.isFriend  -> true / false
 
-**_$.hOffset_** (var)
+**_$.hOffset_**
 > The height offset in pixel from the global header
-
 
 **_$.isMe()_**  (function)
 > returns true if the client is logged in AND the requested user is the client himself respectively there is no user requested
