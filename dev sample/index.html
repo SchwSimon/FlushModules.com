@@ -8,21 +8,42 @@
 	</head>
 	<body>
 		
-		<div style="text-align:center;margin:10px 0">
-			<div class="ov-button" style="display:inline-block;vertical-align:middle;width:125px" data-mod="module_a">Module A</div>
-			<div class="ov-button" style="display:inline-block;vertical-align:middle;width:125px" data-mod="module_b">Module B</div>
-			<br>
-			<div class="ov-button" style="display:inline-block;vertical-align:middle;width:125px" data-app="app_a">App A</div>
-			<div class="ov-button" style="display:inline-block;vertical-align:middle;width:125px" data-app="app_a:hello argument">App A with init argument</div>
-			<div class="ov-button" style="display:inline-block;vertical-align:middle;width:125px" data-app="app_a::abc">App A with starter name</div>
-			<div class="ov-button" style="display:inline-block;vertical-align:middle;width:125px" data-app="app_a::def">App A with another starter name</div>
-			<br>
-			<div class="ov-button" style="display:inline-block;vertical-align:middle;width:125px" data-app="app_b">App B</div>
-			<div class="ov-button" style="display:inline-block;vertical-align:middle;width:125px" data-app="app_b::abc">App B with starter name</div>
+		<style>
+			.f-btn {
+				float: left;
+				width: 48%;
+				height: 18px;
+				padding: 7px 1% 4px;
+				border-radius: 0;
+				border: 0 none;
+				border-bottom: 1px solid lightgray;
+				box-shadow: -1px 0 1px 0 lightgray;
+				background-color: whitesmoke;
+			} .f-btn:hover {
+				background-color: #dedede;
+			} .f-btn:active {
+				color: blue;
+				background-color: white;
+			}
+		</style>
+		
+		<div id="head" style="padding-bottom: 25px;">
+			<div class="f-btn ov-button ov-ellipsis" data-mod="module_a">Module A</div>
+			<div class="f-btn ov-button ov-ellipsis" data-mod="module_b">Module B</div>
+			<div class="ov-clear"></div>
+			<div class="f-btn ov-button ov-ellipsis" data-app="app_a">App A</div>
+			<div class="f-btn ov-button ov-ellipsis" data-app="app_a:hello argument">App A with init argument</div>
+			<div class="ov-clear"></div>
+			<div class="f-btn ov-button ov-ellipsis" data-app="app_a::abc">App A with starter name</div>
+			<div class="f-btn ov-button ov-ellipsis" data-app="app_a::def">App A with another starter name</div>
+			<div class="ov-clear"></div>
+			<div class="f-btn ov-button ov-ellipsis" data-app="app_b">App B</div>
+			<div class="f-btn ov-button ov-ellipsis" data-app="app_b::abc">App B with starter name</div>
+			<div class="ov-clear"></div>
 		</div>
 		
 		<!-- the url main parameter will add the attribute data-main  -->
-		<div id="main"></div>
+		<div id="main" style="margin-bottom: 25px; text-align: center;"></div>
 		
 		<script type="text/javascript" src="SewerFlush.js"></script>
 		<script>
@@ -36,6 +57,8 @@
 			 * Uncomment the following line to imitate being on another user's profile
 			 */
 			//$.userMain = { id:999, name:"another user", avatar:"avatar.jpg", isFriend:false };
+			
+			$.hOffset = $.doc.getElementById( "head" ).clientHeight;
 			
 			document.addEventListener( "click", function(e) {
 				if ( e.target.hasAttribute( "data-mod" ) ) $.mod.start( e.target.getAttribute( "data-mod" ) );

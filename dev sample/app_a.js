@@ -24,7 +24,7 @@
 	if ( !this.dialog ) {
 		var dialog = $.doc.createElement( "div" );
 		dialog.className = "app-app_a";
-		dialog.setAttribute( "style", "border: 1px solid gray;" );
+		dialog.setAttribute( "style", "border: 1px solid gray; text-align:center" );
 		dialog.innerHTML =	(( !initArg ) ? "app started without init argument" : "init argument: " + initArg) +
 										'<div data-close="' + this.starter + '" style="color:red;text-decoration:underline;cursor:pointer">click to close the app</div>';
 		dialog.addEventListener( "click", this.onClick, false );
