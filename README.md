@@ -278,14 +278,6 @@ $.closest( node, ".classname" );
 $.closest( node, "id" );
 ```
 
-**_$.arrayIndexOfKey()_**  (function)
-> Searches for a value in a given array of key value object
-> Return the array index if found else null
-```js
-var arr = [ {"key_A":"value a"}, {"key_B":"value b"}, {"KeY":"ValuE"} ];
-$.arrayIndexOfKey( arr, "KeY", "ValuE" ); // will return 2
-```
-
 **_$.empty()_**  (function)
 > Emptys a node
 ```js
