@@ -321,8 +321,8 @@ $.uniqid( "----" ); // return something like "----78afx6ob9"
 ```js
 var time = $.time.parse( "2017-08-26 22:45:00" );
 time.obj // An js Date object
-time.date // "26.08.2017 - 22:45"
-time.dateOnly // "26.08.2017"
+time.datetime // "26.08.2017 - 22:45"
+time.date // "26.08.2017"
 time.time // "22:45"
 time.past // "xx minutes/hours/days/weeks/months"
 ```
