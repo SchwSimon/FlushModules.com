@@ -38,16 +38,16 @@ How to build a module
     // request -> when opening flushmodules.com with the parameter "main" request will be its value
     
     
-    // if this module is a user only module (means that client has to be on a users profile),
-    // you can use this function to deny access to the module and print out an error message
+    // if this module is a user only module (means that client has to be on a users profile) 
+    // and the client has to be connected as friends
+    // you can use this function to deny access to the module and automatically show an error message
     // - No user selected
     // - This user is not your friend
-    if ( !$.mod.checkAccess( isMe ) ) { // module will only start when the client is logged in
-      return;                           // the client is on his own module page
-    }                                   // the client is on a friends module page
-    // OR
-    // if its a user only module but the client dont need to be friends or even logged in
-    if ( !$.mod.checkAccess( isMe, false ) ) {  // just pass false as second argument
+    if ( !$.mod.checkAccess( isMe ) ) {
+      return;
+    }
+    // OR if the client dont need to be friends, just pass false as second argument
+    if ( !$.mod.checkAccess( isMe, false ) ) {
       return;
     }
     
