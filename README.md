@@ -220,16 +220,16 @@ How to build an app
 **_$.hOffset_**
 > The height offset in pixel from the global header
 
-**_$.isMe()_**  (function)
+**_$.isMe()_**
 > returns true if the client is logged in AND the requested user is the client himself respectively there is no user requested
 
-**_$.key()_** (function)
+**_$.key()_**
 > converts a keyboard event object, return a string as KeyboardEvent.key would give
 > KeyboardEvent.key is used directly when possible (Chrome >= 51.0, IE >= 9)
 > Following keys are converted so far KeyboardEvent.key is undefined
 > "Backspace", "Enter", "Shift", "Control", "Alt", "Escape", " ", "ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"
 
-**_$.userFriends.get()_** (function)
+**_$.userFriends.get()_**
 > Get the client's friends (only if logged in)
 ```js
 $.userFriends.get({
@@ -246,31 +246,31 @@ $.userFriends.get({
 });
 ```
 
-**_$.hasClass()_**  (function)
+**_$.hasClass()_**
 > true / false
 ```js
 $.hasClass( node, "classname" );
 ```
 
-**_$.addClass()_**  (function)
+**_$.addClass()_**
 > Adds a class to the node if it not already got that class
 ```js
 $.addClass( node, "classname" );
 ```
 
-**_$.removeClass()_**  (function)
+**_$.removeClass()_**
 > Removes a class from a node
 ```js
 $.removeClass( node, "classname" );
 ```
 
-**_$.toggleClass()_**  (function)
+**_$.toggleClass()_**
 > Toggles a class on a node
 ```js
 $.toggleClass( node, "classname" );
 ```
 
-**_$.closest()_**  (function)
+**_$.closest()_**
 > Return the node which has the given class or id, beginning from input node upwards 
 > If none found return false
 ```js
@@ -278,26 +278,26 @@ $.closest( node, ".classname" );
 $.closest( node, "id" );
 ```
 
-**_$.empty()_**  (function)
+**_$.empty()_**
 > Emptys a node
 ```js
 $.empty( $.doc.getElementById( "main" ) );
 ```
 
-**_$.prefix()_**  (function)
+**_$.prefix()_**
 > Returns a prefixed string by placing the prefix string before the needle (intended for prefixing filesnames)
 ```js
 $.prefix( "avatar.jpg", "_prefix" );  // return "avatar_prefix.jpg"
 ```
 
-**_$.htmlspecialdecode()_**  (function)
+**_$.htmlspecialdecode()_**
 > When putting escaped text into input, textarea or into a node by using "node.textContent" use this function
 > to decode the escapes back to characters
 ```js
 $.htmlspecialdecode( "&amp; &quot; &lt; &gt;" );  // return '& " < >'
 ```
 
-**_$.parseText()_**  (function)
+**_$.parseText()_**
 > Returns the parsed html text ready for putting in to a node using "node.innerHTML"
 ```js
 $.parseText( "@Simon here is a link https://flushmodules.com \n&lt;- Here is a break" );
@@ -308,14 +308,14 @@ $.parseText( "@Simon here is a link https://flushmodules.com \n&lt;- Here is a b
 // <br><- Here is a break
 ```
 
-**_$.uniqid()_**  (function)
+**_$.uniqid()_**
 > Returns a unique alphabetical string, prefixed by default with an underscore
 ```js
 $.uniqid();  // return something like "_5j6gfndyh"
 $.uniqid( "----" ); // return something like "----78afx6ob9"
 ```
 
-**_$.time.parse()_**  (function)
+**_$.time.parse()_**
 > Parses a timestamp in the following format "year-month-day hours:minutes:seconds"
 > Returns an object
 ```js
@@ -327,7 +327,7 @@ time.time // "22:45"
 time.past // "xx minutes/hours/days/weeks/months"
 ```
 
-**_$.info()_**  (function)
+**_$.info()_**
 > Creates an info popup dialog
 ```js
 $.info( "Info title", "Info body content" );  // can be closed by clicking anywhere (has only an "Ok" button)
@@ -337,7 +337,7 @@ $.info( "Info title", "Info body content", function() { // when passing a functi
                                                         // will trigger the function on confirm
 ```
 
-**_$.ajax()_**  (function)
+**_$.ajax()_**
 > Ajax function similar to jQuery
 ```js
 $.ajax({
@@ -361,21 +361,21 @@ $.ajax({
 });
 ```
 
-**_$.docScroll_**  (object)
+**_$.docScroll_**
 > Set or get the document scroll position
 ```js
 $.docScroll.get();  // the page Y offset (vertical scroll position) in pixel
 $.docScroll.set( 500 ); // scrolls the document to 500px from top (without transition)
 ```
 
-**_$.volume_**  (object)
+**_$.volume_**
 > Set or get the global sound volume
 ```js
 $.volume.get();  // returns a float value from 0.00 to 1.00
 $.volume.set( 0.5 ); // set the global sound volume to 0.5
 ```
 
-**_$.connector_**  (object)
+**_$.connector_**
 > Register, use or remove a connector
 > Connectors are used for app to app or module to app communication
 ```js
@@ -387,7 +387,7 @@ $.connector.use( "connector_key", "Hello data!" ); // will console.log -> "Hello
 $.connector.remove( "connector_key" );  // removes the connector
 ```
 
-**_$.listen_**  (object)
+**_$.listen_**
 > Register or remove global listening events
 > !NOTE: "resize" and "scroll" events are getting throttled by 180ms so no need to take care of
 > !!NOTE: Do not use a variable called 'e'
