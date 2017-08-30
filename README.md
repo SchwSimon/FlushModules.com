@@ -1,8 +1,8 @@
 # FlushModules.com
 
-Community driven open source social media platform
+Community driven social network platform
 
-(before uploading SewerFlush.js an co. I have to refactor them)
+(SewerFlush.js has to get refactored)
 
 **_https://FlushModules.com_**
 
